@@ -2,65 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Oblig 1</title>
+    <title>Oblig 1 DATA 1700</title>
+    <script src="javascript.js"></script>
 
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
     <h1> Bestilling av kinobiletter </h1>
-
-    <select id="betaling" onchange="velg();">
-        <option>Velg film her</option>
-        <option>Barbie</option>
-        <option>Den lille havfruen</option>
-        <option>Avatar</option>
-        <option>Mean Girls</option>
-    </select>
-    <tr>
-        <td>Antall</td>
-
-    </tr>
-    <tr>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-    </tr>
-
-
-
-
-
+    <table>
+        <tr>
+            <td>Velg film:</td>
+            <td><select id="velgFilm">
+                <option hidden="Velg film her">Velg film her</option>
+                <option>Barbie</option>
+                <option>Den lille havfruen</option>
+                <option>Avatar</option>
+                <option>Mean Girls</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Antall</td>
+            <td>
+                <input  type="text" id="antall" style = "width: 20px"/>
+                <span style = "color: red" id="antallError"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Fornavn</td>
+            <td>
+                <input  type="text" id="fornavn" />
+                <span style = "color: red" id="fornavnError"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Etternavn</td>
+            <td>
+                <input  type="text" id="etternavn" />
+                <span style = "color: red" id="etternavnError"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Telefonnr</td>
+            <td>
+                <input  type="text" id="telefonnr"/>
+                <span style = "color: red" id="telefonnrError"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Epost</td>
+            <td>
+                <input  type="text" id="epost" />
+                <span style = "color: red" id="epostError"></span>
+            </td>
+        </tr>
         <br>
-        Antall
-
-        <br>
-        Fornavn<input  type="text" id="fornavn">
-
-        <br>
-        Etternavn <input  type="text" id="etternavn">
-
-        <br>
-        Telefonnr <input  type="number" id="telefonnr">
-
-        <br>
-        Epost <input  type="text" id="epost">
-
-        <br>
-        <button onclick="velg()">Kjøp billett</button>
-    </form>
+        <tr>
+            <td><button value="Kjøp billett" onclick="kjop()">Kjøp billett</button></td>
+        </tr>
+    </table>
 
     <h2>Alle biletter</h2>
-
-    <br>
-    <button onclick="velg()">Slett alle bilettene</button>
+    <div id="utInformasjon"></div>
+       <button value="slett alle billettene" onclick="slett()">Slett alle bilettene</button>
 </body>
 </html>
