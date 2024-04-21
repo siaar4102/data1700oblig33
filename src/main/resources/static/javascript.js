@@ -2,9 +2,9 @@ const utInformasjon= [];
 
 function visPersonRegister() {
     let ut =
-        "<table><tr" +
-        "<th>Filmer</th><th>Antall</th>" +
-        "<th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>Epost</th>" +
+        "<table><tr>" +
+        "<th>Film: </th><th>Antall: </th>" +
+        "<th>Fornavn: </th><th>Etternavn: </th><th>Telefonnr: </th><th>Epost: </th>" +
         "</tr>";
 
     for (let i of utInformasjon) {
