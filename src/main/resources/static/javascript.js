@@ -1,3 +1,93 @@
+$(function (){
+    hentAlleFilmer();
+});
+
+function hentAlleFilmer() {
+    $.get("/hentFilmer", function (filmer) {
+        formaterFilmer(filmer);
+    });
+}
+
+    function formaterFilmer(filmer) {
+    let ut = "<select id = 'valgtFilm' class='form-control' onchange='finnTyper()'>"
+    let forrigeFilm = "";
+    ut += "<option >Velg film</option>";
+
+    for (const film of filmer) {
+        if(filmer.velgFilm !== forrigeFilm) {
+            ut += `<option>${film.velgFilm}</option>`;
+        }
+        forrigeFilm = film.velgFilm;
+    }
+    ut += "</select>";
+    $("#velgFilm").html(ut);
+}
+
+function finnTyper() {
+    const valgtFilm = $("#valgtFilm").val();
+    $.get("/hentFilmer", function(filmer) {
+        formaterFilmer(filmer, valgtFilm);
+    });
+}
+
+
+function kjop() {
+    if(!validateInputs()){
+        return;
+    }
+
+    const kinoReservasjon = {
+        velgFilm: $("#valgtFilm").val(), //henter inn fra input-feltene ved hjelp av jquery
+        antall: $("#antall").val(),
+        fornavn: $("#fornavn").val(),
+        etternavn: $("#etternavn").val(),
+        telefonnr: $("#telefonnr").val(),
+        epost: $("#epost").val(),
+    }
+
+    $.post("/lagre", kinoReservasjon, function () { //sender til server
+        hentAlle();
+    });
+
+    $("#valgtFilm").val(""); //tømmer alle feltene
+    $("#antall").val("");
+    $("#fornavn").val("");
+    $("#etternavn").val("");
+    $("#telefonnr").val("");
+    $("#epost").val("");
+}
+
+function hentAlle() {
+    $.get("/hentAlle", function(billetter) {
+        formaterData(billetter);
+    });
+}
+
+function formaterData(billetter) {
+    let ut =
+        "<table class='table table-striped'><tr>" +
+        "<th>Film: </th><th>Antall: </th>" +
+        "<th>Fornavn: </th><th>Etternavn: </th><th>Telefonnr: </th><th>Epost: </th>" +
+        "</tr>";
+    for (const i of billetter) {
+        ut += "<tr>";
+        ut += "<td>" + i.velgFilm + "</td><td>" + i.antall + "</td>";
+        ut += "<td>" + i.fornavn + "</td><td>" + i.etternavn + "</td><td>" + i.telefonnr + "</td><td>" + i.epost + "</td>";
+        ut += "</tr>";
+    }
+    ut += "</table";
+    $("#utInformasjon").html(ut);
+}
+
+function slett() {
+    $.get("/slett", function() {
+        hentAlle();
+    });
+}
+
+
+/*
+
 const utInformasjon= [];
 
 function visPersonRegister() {
@@ -48,7 +138,7 @@ function kjop(){
 
     visPersonRegister();
 }
-
+*/
 function validatePhoneNumber(phoneNumber)
 {
     let phoneRegex=/^\d{8}$/;
@@ -113,7 +203,7 @@ function validateInputs()
 
     return isValid;
 }
-
+/*
 function slett(){
     while(utInformasjon.length!=0){
         utInformasjon.pop()
@@ -122,3 +212,5 @@ function slett(){
     let utInformasjonElement=document.getElementById("utInformasjon");
     utInformasjonElement.innerHTML="";
 }
+
+ */
