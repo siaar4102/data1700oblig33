@@ -9,7 +9,7 @@ function hentAlleFilmer() {
 }
 
     function formaterFilmer(filmer) {
-    let ut = "<select id = 'valgtFilm' class='form-control' onchange='finnTyper()'>"
+    let ut = "<select id = 'valgtFilm'>"
     let forrigeFilm = "";
     ut += "<option >Velg film</option>";
 
@@ -21,13 +21,6 @@ function hentAlleFilmer() {
     }
     ut += "</select>";
     $("#velgFilm").html(ut);
-}
-
-function finnTyper() {
-    const valgtFilm = $("#valgtFilm").val();
-    $.get("/hentFilmer", function(filmer) {
-        formaterFilmer(filmer, valgtFilm);
-    });
 }
 
 
@@ -86,59 +79,6 @@ function slett() {
 }
 
 
-/*
-
-const utInformasjon= [];
-
-function visPersonRegister() {
-    let ut =
-        "<table><tr>" +
-        "<th>Film: </th><th>Antall: </th>" +
-        "<th>Fornavn: </th><th>Etternavn: </th><th>Telefonnr: </th><th>Epost: </th>" +
-        "</tr>";
-
-    for (let i of utInformasjon) {
-        ut += "<tr>";
-        ut += "<td>" + i.velgFilm + "</td><td>" + i.antall + "</td>";
-        ut += "<td>" + i.fornavn + "</td><td>" + i.etternavn + "</td><td>" + i.telefonnr + "</td><td>" + i.epost + "</td>";
-        ut += "</tr>";
-    }
-    document.getElementById("utInformasjon").innerHTML = ut;
-}
-
-function kjop(){
-    if(!validateInputs()){
-        return;
-    }
-
-    let fornavn=document.getElementById("fornavn").value.trim();
-    let etternavn=document.getElementById("etternavn").value;
-    let telefonnrS=document.getElementById("telefonnr").value;
-    let epost=document.getElementById("epost").value;
-    let velgFilm=document.getElementById("velgFilm").value;
-    let antall=document.getElementById("antall").value;
-    let telefonnr=Number(telefonnrS);
-
-    const person={
-        fornavn:fornavn,
-        etternavn:etternavn,
-        telefonnr:telefonnr,
-        epost:epost,
-        velgFilm:velgFilm,
-        antall:antall
-    };
-
-    utInformasjon.push(person);
-    document.getElementById("fornavn").value="";
-    document.getElementById("etternavn").value="";
-    document.getElementById("telefonnr").value="";
-    document.getElementById("epost").value="";
-    document.getElementById("velgFilm").value="";
-    document.getElementById("antall").value="";
-
-    visPersonRegister();
-}
-*/
 function validatePhoneNumber(phoneNumber)
 {
     let phoneRegex=/^\d{8}$/;

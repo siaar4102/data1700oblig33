@@ -1,5 +1,5 @@
 package com.example.data1700oblig1;
-public class kinoReservasjon {
+public class KinoReservasjon {
     private String velgFilm;
     private String antall;
     private String fornavn;
@@ -7,7 +7,7 @@ public class kinoReservasjon {
     private String telefonnr;
     private String epost;
 
-    public kinoReservasjon(String velgFilm, String antall, String fornavn, String etternavn, String telefonnr, String epost) {
+    public KinoReservasjon(String velgFilm, String antall, String fornavn, String etternavn, String telefonnr, String epost) {
         this.velgFilm = velgFilm;
         this.antall = antall;
         this.fornavn = fornavn;
@@ -16,7 +16,7 @@ public class kinoReservasjon {
         this.epost = epost;
     }
 
-    public kinoReservasjon() { }
+    public KinoReservasjon() { }
 
     public String getVelgFilm() {
         return velgFilm;

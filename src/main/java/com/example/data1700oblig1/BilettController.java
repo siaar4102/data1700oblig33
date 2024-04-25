@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 @RestController
 public class BilettController {
 
@@ -35,12 +38,18 @@ public class BilettController {
     }
 
     @PostMapping("/lagre")
-    public void lagre(kinoReservasjon billett) {rep.lagre(billett);
-    }
+    public void lagre(KinoReservasjon billett) {  rep.lagre(billett);  }
+
 
     @GetMapping("/hentAlle")
-    public List<kinoReservasjon> hentAlle() { return rep.hentAlle(); }
-
+    public List<KinoReservasjon> hentAlle() {
+        List<KinoReservasjon> alleBilletter = rep.hentAlle();
+        // Sort the list by etternavn
+        List<KinoReservasjon> sortedList = alleBilletter.stream()
+                .sorted(Comparator.comparing(KinoReservasjon::getEtternavn))
+                .collect(Collectors.toList());
+        return sortedList;
+    }
     @GetMapping("/slett")
     public void slett() { rep.slett(); }
 }
